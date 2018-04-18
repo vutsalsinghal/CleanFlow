@@ -4,9 +4,13 @@ CleanFlow is a framework for cleaning, pre-processing and exploring data in a sc
 
 
 ## Usage
+
+Start Pyspark session
 ```
 $ pyspark
-
+```
+Import data
+```
 >>> df = sqlContext.read.format('csv').options(header='true',inferschema='true').load('parking-violations-header.csv')
 >>> type(file)
 
@@ -37,7 +41,9 @@ root
  |-- vehicle_color: string (nullable = true)
  |-- vehicle_make: string (nullable = true)
  |-- vehicle_year: string (nullable = true)
- 
+ ```
+ Import CleanFlow library
+ ```
  >>> from cleanflow.exploratory import describe
  >>> describe(df)
 ```
