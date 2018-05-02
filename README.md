@@ -61,7 +61,7 @@ root
 
 ```
 >>> df = df.select('summons_number', 'violation_code', 'violation_county', 'plate_type', 'vehicle_year')
->>> df.show()
+>>> df.show(10)
 
 +--------------+--------------+----------------+----------+------------+
 |summons_number|violation_code|violation_county|plate_type|vehicle_year|
@@ -77,14 +77,14 @@ root
 |    1367591351|            40|               K|       PAS|        2005|
 |    1354042244|            20|              NY|       COM|           0|
 +--------------+--------------+----------------+----------+------------+
-only showing top 20 rows
+only showing top 10 rows
 ```
 
 Import functions
 
 ```
 >>> from cleanflow.preprocessing import trim_col, rmSpChars
->>> rmSpChars(trim_col(df)).show()
+>>> rmSpChars(trim_col(df)).show(10)
 
 +--------------+--------------+----------------+----------+------------+
 |summons_number|violation_code|violation_county|plate_type|vehicle_year|
