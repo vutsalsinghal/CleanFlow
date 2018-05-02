@@ -11,12 +11,13 @@ $ pyspark
 ```
 Import data
 ```
+# DataFrame (df)
 >>> df = sqlContext.read.format('csv').options(header='true',inferschema='true').load('parking-violations-header.csv')
 >>> type(df)
 
 pyspark.sql.dataframe.DataFrame
 
->>> file.printSchema()
+>>> df.printSchema()
 
 root
  |-- summons_number: long (nullable = true)
