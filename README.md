@@ -12,7 +12,7 @@ $ pyspark
 Import data
 ```
 >>> df = sqlContext.read.format('csv').options(header='true',inferschema='true').load('parking-violations-header.csv')
->>> type(file)
+>>> type(df)
 
 pyspark.sql.dataframe.DataFrame
 
@@ -59,7 +59,7 @@ root
 | max | 8.297500e+09 | 9.900000e+01 | 9.670000e+02 | 9.670000e+02 | 9.998430e+05 | 9.920000e+02 | 2.069000e+03 |
 
 ```
->>> df = file.select('summons_number', 'violation_code', 'violation_county', 'plate_type', 'vehicle_year')
+>>> df = df.select('summons_number', 'violation_code', 'violation_county', 'plate_type', 'vehicle_year')
 >>> df.show()
 
 +--------------+--------------+----------------+----------+------------+
@@ -120,5 +120,4 @@ Import functions
 |    1367171477|            45|              NY|       COM|        1990|
 +--------------+--------------+----------------+----------+------------+
 only showing top 20 rows
-
 ```
