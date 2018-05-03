@@ -13,7 +13,7 @@ CleanFlow is a framework for cleaning, pre-processing and exploring data in a sc
 ## Sample usage
 
 Start Pyspark session
-```
+```python
 $ pyspark
 
 Welcome to
@@ -27,7 +27,7 @@ Using Python version 3.5.2 (default, Nov 23 2017 16:37:01)
 SparkSession available as 'spark'.
 ```
 Load data
-```
+```python
 # DataFrame (df)
 >>> df = sqlContext.read.format('csv').options(header='true',inferschema='true').load('sample.csv')
 >>> type(df)
@@ -61,7 +61,7 @@ root
  |-- vehicle_year: string (nullable = true)
  ```
  Import CleanFlow library
- ```
+ ```python
  >>> from cleanflow.exploratory import describe
  >>> describe(df)
 ```
@@ -76,7 +76,7 @@ root
 | 75% | 8.038442e+09 | 4.000000e+01 | 7.700000e+01 | 7.700000e+01 | 3.621810e+05 | 7.700000e+01 | 2.013000e+03 |
 | max | 8.297500e+09 | 9.900000e+01 | 9.670000e+02 | 9.670000e+02 | 9.998430e+05 | 9.920000e+02 | 2.069000e+03 |
 
-```
+```python
 >>> df = df.select('summons_number', 'violation_code', 'violation_county', 'plate_type', 'vehicle_year')
 >>> df.show(10)
 
@@ -97,7 +97,7 @@ root
 only showing top 10 rows
 ```
 
-```
+```python
 >>> from cleanflow.preprocessing import trim_col, rmSpChars
 >>> rmSpChars(trim_col(df)).show(10)
 
@@ -136,7 +136,7 @@ only showing top 10 rows
 only showing top 10 rows
 ```
 
-```
+```python
 >>> import cleanflow.preprocessing as cfpr
 >>> cfpr.upper_case(cfpr.lower_case(df), columns='violation_county').show(10)
 
@@ -157,7 +157,7 @@ only showing top 10 rows
 only showing top 10 rows
 ```
 
-```
+```python
 >>> from cleanflow.exploratory import check_duplicates, find_unique
 >>> check_duplicates(df, column='violation_county').show()
 
