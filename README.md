@@ -2,14 +2,31 @@
 
 CleanFlow is a framework for cleaning, pre-processing and exploring data in a scalable and distributed manner. Being built on top of Apache Spark, it is highly scalable.
 
+## Features
+* Explore data
+* Clean Data
+* Get output in different formats
 
-## Usage
+## Installation
+`pip install CleanFlow`
+
+## Sample sage
 
 Start Pyspark session
 ```
 $ pyspark
+
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 2.2.1
+      /_/
+
+Using Python version 3.5.2 (default, Nov 23 2017 16:37:01)
+SparkSession available as 'spark'.
 ```
-Import data
+Load data
 ```
 # DataFrame (df)
 >>> df = sqlContext.read.format('csv').options(header='true',inferschema='true').load('parking-violations-header.csv')
