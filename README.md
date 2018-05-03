@@ -138,4 +138,44 @@ only showing top 10 rows
 |    1354042244|            20|              NY|       com|           0|
 +--------------+--------------+----------------+----------+------------+
 only showing top 10 rows
+
+>>> from cleanflow.exploratory import check_duplicates, find_unique
+>>> check_duplicates(df, column='violation_county').show()
+
++---------+----------+
+|TotalRows|UniqueRows|
++---------+----------+
+|    99533|        10|
++---------+----------+
+
+>>> check_duplicates(df, column='violation_county', show=True).show()
+
++--------------+-----+
+|DuplicateValue|Count|
++--------------+-----+
+|             K|29123|
+|             Q|25961|
+|            BX|21203|
+|            NY|20513|
+|             R| 2728|
+|          null|  467|
++--------------+-----+
+
+>>> find_unique(df, column='violation_county').show()
+
++------------+-----+                                                            
+|UniqueValues|Count|
++------------+-----+
+|           K|29123|
+|           Q|25961|
+|          BX|21203|
+|          NY|20513|
+|           R| 2728|
+|        null|  467|
+|         NY |    1|
+|        NY$ |    1|
+|        K$! |    1|
+|        BX$ |    1|
+|        NY! |    1|
++------------+-----+
 ```
