@@ -10,7 +10,7 @@ CleanFlow is a framework for cleaning, pre-processing and exploring data in a sc
 ## Installation
 `pip install CleanFlow`
 
-## Sample sage
+## Sample usage
 
 Start Pyspark session
 ```
@@ -95,11 +95,7 @@ root
 |    1354042244|            20|              NY|       COM|           0|
 +--------------+--------------+----------------+----------+------------+
 only showing top 10 rows
-```
-
-Import functions
-
-```
+<hr>
 >>> from cleanflow.preprocessing import trim_col, rmSpChars
 >>> rmSpChars(trim_col(df)).show(10)
 
