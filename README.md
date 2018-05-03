@@ -95,7 +95,9 @@ root
 |    1354042244|            20|              NY|       COM|           0|
 +--------------+--------------+----------------+----------+------------+
 only showing top 10 rows
-<hr>
+```
+
+```
 >>> from cleanflow.preprocessing import trim_col, rmSpChars
 >>> rmSpChars(trim_col(df)).show(10)
 
@@ -132,7 +134,9 @@ only showing top 10 rows
 |    1354042244|            20|              NY|       COM|           0|
 +--------------+--------------+----------------+----------+------------+
 only showing top 10 rows
+```
 
+```
 >>> import cleanflow.preprocessing as cfpr
 >>> cfpr.upper_case(cfpr.lower_case(df), columns='violation_county').show(10)
 
@@ -151,7 +155,9 @@ only showing top 10 rows
 |    1354042244|            20|              NY|       com|           0|
 +--------------+--------------+----------------+----------+------------+
 only showing top 10 rows
+```
 
+```
 >>> from cleanflow.exploratory import check_duplicates, find_unique
 >>> check_duplicates(df, column='violation_county').show()
 
