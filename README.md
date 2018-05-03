@@ -13,7 +13,7 @@ CleanFlow is a framework for cleaning, pre-processing and exploring data in a sc
 ## Sample usage
 
 Start Pyspark session
-```python
+```
 $ pyspark
 
 Welcome to
@@ -35,7 +35,7 @@ Load data
 pyspark.sql.dataframe.DataFrame
 
 >>> df.printSchema()
-
+'''
 root
  |-- summons_number: long (nullable = true)
  |-- issue_date: timestamp (nullable = true)
@@ -59,6 +59,7 @@ root
  |-- vehicle_color: string (nullable = true)
  |-- vehicle_make: string (nullable = true)
  |-- vehicle_year: string (nullable = true)
+ '''
  ```
  Import CleanFlow library
  ```python
@@ -79,7 +80,7 @@ root
 ```python
 >>> df = df.select('summons_number', 'violation_code', 'violation_county', 'plate_type', 'vehicle_year')
 >>> df.show(10)
-
+'''
 +--------------+--------------+----------------+----------+------------+
 |summons_number|violation_code|violation_county|plate_type|vehicle_year|
 +--------------+--------------+----------------+----------+------------+
@@ -94,13 +95,14 @@ root
 |    1367591351|            40|               K|       PAS|        2005|
 |    1354042244|            20|              NY|       COM|           0|
 +--------------+--------------+----------------+----------+------------+
+'''
 only showing top 10 rows
 ```
 
 ```python
 >>> from cleanflow.preprocessing import trim_col, rmSpChars
 >>> rmSpChars(trim_col(df)).show(10)
-
+'''
 +--------------+--------------+----------------+----------+------------+
 |summons_number|violation_code|violation_county|plate_type|vehicle_year|
 +--------------+--------------+----------------+----------+------------+
@@ -115,10 +117,11 @@ only showing top 10 rows
 |    1367591351|            40|               K|       PAS|        2005|
 |    1354042244|            20|              NY|       COM|           0|
 +--------------+--------------+----------------+----------+------------+
+'''
 only showing top 10 rows
 
 >>> rmSpChars(trim_col(df), regex='[^A-Za-z0-9]+').show(10)
-
+'''
 +--------------+--------------+----------------+----------+------------+
 |summons_number|violation_code|violation_county|plate_type|vehicle_year|
 +--------------+--------------+----------------+----------+------------+
@@ -133,13 +136,14 @@ only showing top 10 rows
 |    1367591351|            40|               K|       PAS|        2005|
 |    1354042244|            20|              NY|       COM|           0|
 +--------------+--------------+----------------+----------+------------+
+'''
 only showing top 10 rows
 ```
 
 ```python
 >>> import cleanflow.preprocessing as cfpr
 >>> cfpr.upper_case(cfpr.lower_case(df), columns='violation_county').show(10)
-
+'''
 +--------------+--------------+----------------+----------+------------+
 |summons_number|violation_code|violation_county|plate_type|vehicle_year|
 +--------------+--------------+----------------+----------+------------+
@@ -154,13 +158,14 @@ only showing top 10 rows
 |    1367591351|            40|               K|       pas|        2005|
 |    1354042244|            20|              NY|       com|           0|
 +--------------+--------------+----------------+----------+------------+
+'''
 only showing top 10 rows
 ```
 
 ```python
 >>> from cleanflow.exploratory import check_duplicates, find_unique
 >>> check_duplicates(df, column='violation_county').show()
-
+'''
 +--------------+-----+
 |DuplicateValue|Count|
 +--------------+-----+
@@ -171,9 +176,9 @@ only showing top 10 rows
 |             R| 2728|
 |          null|  467|
 +--------------+-----+
-
+'''
 >>> find_unique(df, column='violation_county').show()
-
+'''
 +------------+-----+                                                            
 |UniqueValues|Count|
 +------------+-----+
@@ -189,4 +194,5 @@ only showing top 10 rows
 |        BX$ |    1|
 |        NY! |    1|
 +------------+-----+
+'''
 ```
