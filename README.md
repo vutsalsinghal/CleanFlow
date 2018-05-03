@@ -29,7 +29,7 @@ SparkSession available as 'spark'.
 Load data
 ```
 # DataFrame (df)
->>> df = sqlContext.read.format('csv').options(header='true',inferschema='true').load('parking-violations-header.csv')
+>>> df = sqlContext.read.format('csv').options(header='true',inferschema='true').load('sample.csv')
 >>> type(df)
 
 pyspark.sql.dataframe.DataFrame
