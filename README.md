@@ -9,6 +9,7 @@ CleanFlow is a framework for cleaning, pre-processing and exploring data in a sc
 
 ## Installation
 Use of virtualenv is strongly advised!
+
 `pip install CleanFlow`
 
 ## Sample usage
