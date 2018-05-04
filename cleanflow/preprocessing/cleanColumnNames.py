@@ -1,6 +1,6 @@
 def cleanColumnNames(df):
     '''
-    Remove special characters such as !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ from column names
+    Remove special characters such as !"#$%\'*,./:;<=>?@[\\]^`{|}~ from column names
 
     Parameter
     ---------
@@ -8,7 +8,7 @@ def cleanColumnNames(df):
 
     return df
     '''
-    spChars = '!"#$%&\'()*+,-./:;<=>?@[\\]^`{|}~'
+    spChars = '!"#$%\'*,./:;<=>?@[\\]^`{|}~'
     for column in df.columns:
         oldName = column
         for punct in (set(column) & set(spChars)):
