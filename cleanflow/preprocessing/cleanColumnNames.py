@@ -1,5 +1,3 @@
-import string
-
 def cleanColumnNames(df):
     '''
     Remove special characters such as !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ from column names
@@ -10,9 +8,10 @@ def cleanColumnNames(df):
 
     return df
     '''
+    spChars = '!"#$%&\'()*+,-./:;<=>?@[\\]^`{|}~'
     for column in df.columns:
         oldName = column
-        for punct in (set(column) & set(string.punctuation)):
+        for punct in (set(column) & set(spChars)):
             column = column.replace(punct, "")
         df = df.withColumnRenamed(oldName,column)
     return df
