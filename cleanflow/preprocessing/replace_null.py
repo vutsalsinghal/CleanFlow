@@ -1,4 +1,4 @@
-def replace_na(df, value, columns="*"):
+def replace_null(df, value, columns="*"):
     """
     Replace nulls with specified value.
     
