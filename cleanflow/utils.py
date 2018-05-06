@@ -1,14 +1,16 @@
-"""this file contains methods to read, write, get sparksession etc.
-that are not directly involved with data cleaning but enhance the process to great extent"""
-
 from functools import lru_cache
-
 from pyspark.sql import SparkSession
 
+"""
+This file contains methods to read, write, get sparksession etc.
+that are not directly involved with data cleaning but enhance the process to great extent
+"""
 
 @lru_cache(maxsize=None)
 def get_spark():
-    """get instance of spark"""
+    """
+    Get instance of spark
+    """
     return SparkSession.builder \
         .master("local") \
         .appName("cleanflow") \
@@ -17,7 +19,9 @@ def get_spark():
 
 
 def read_csv(path, sep=',', header='true', infer_schema='true'):
-    """read csv file"""
+    """
+    Read csv file
+    """
     session = get_spark()
     return session.read \
         .options(header=header) \
@@ -27,17 +31,23 @@ def read_csv(path, sep=',', header='true', infer_schema='true'):
 
 
 def read_json(path, multiLine=True):
-    """read json file"""
+    """
+    Read json file
+    """
     session = get_spark()
     return session.read.json(path, multiLine=multiLine)
 
 
 def write_csv(df, path):
-    """write to a csv file"""
+    """
+    Write to a csv file
+    """
     df.toPandas.to_csv(path)
 
 
 def write_json(df, path):
-    """write to a json file"""
+    """
+    Write to a json file
+    """
     df.toPandas.to_json(path)
 
