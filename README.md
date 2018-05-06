@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://lh4.googleusercontent.com/Jm0F8xs9JEjuY28jqHdZjyqhPQglvWLlZDZe2LyX-kDDSlIRrHMOV3JWkX2aqDg2HM0cBtPpZ08bZHvIb-Lc=w1920-h987-rw"><br><br>
+  <img src="https://pyofey.pythonanywhere.com/static/cf_logo.png"><br><br>
 </div>
 
 CleanFlow is a framework for cleaning, pre-processing and exploring data in a scalable and distributed manner. Being built on top of Apache Spark, it is highly scalable.
