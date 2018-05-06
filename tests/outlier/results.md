@@ -28,3 +28,8 @@ Time: 82.51344513893127
 Cluster type: gaussian, # features: 3, k: 5<br>aa
 Time: 73.40159583091736
 
+Cluster type: gaussian, # features: 5, k: 5<br>
+Time: 70.30195808410645
+
+Cluster type: gaussian, # features: 10, k: 5<br>
+Time: 90.04665160179138
