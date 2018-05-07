@@ -67,7 +67,7 @@ root
  ```python
  >>> from cleanflow.exploratory import describe
  >>> describe(df)
-'''
+```
 | summons_number | violation_code | violation_location | violation_precinct | issuer_code | issuer_precinct | vehicle_year |
 
 | --- | --- | --- | --- | --- | --- | --- |
@@ -87,8 +87,7 @@ root
 | 75% | 8.038442e+09 | 4.000000e+01 | 7.700000e+01 | 7.700000e+01 | 3.621810e+05 | 7.700000e+01 | 2.013000e+03 |
 
 | max | 8.297500e+09 | 9.900000e+01 | 9.670000e+02 | 9.670000e+02 | 9.998430e+05 | 9.920000e+02 | 2.069000e+03 |
-'''
-```
+
 ```python
 
 >>> # Choose a subset of data
