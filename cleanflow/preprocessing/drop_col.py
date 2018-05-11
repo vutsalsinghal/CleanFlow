@@ -6,8 +6,10 @@ def drop_col(df, columns):
 
     Parameters
     ----------
-    df
-    column
+    df     : dataframe
+    column : column(s) to be dropped
+
+    return modifiedDF
     """
     assert_type_str_or_list(df, columns, "columns")
 
