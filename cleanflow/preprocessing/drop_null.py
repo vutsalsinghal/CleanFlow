@@ -8,7 +8,7 @@ from pyspark import SparkContext
 sc = SparkContext.getOrCreate()
 sqlContext = SQLContext(sc)
 
-def drop_null(df, column):
+def drop_null(df, column, summary=False):
     '''
     Drop rows that have null value in the given row
 
@@ -23,7 +23,10 @@ def drop_null(df, column):
     summary: summary of action performed (type='pyspark.sql.dataframe.DataFrame')
     '''
     newDF = df.where(col(column).isNotNull())
-    previousTotRows = df.count()
-    newTotRows = newDF.count()
-    summary = sqlContext.createDataFrame([(previousTotRows, newTotRows, previousTotRows-newTotRows)],['Previous Row Count', 'New Row Count','Rows affected'])
-    return (newDF, summary)
+    
+    if summary:
+        previousTotRows = df.count()
+        newTotRows = newDF.count()
+        summary = sqlContext.createDataFrame([(previousTotRows, newTotRows, previousTotRows-newTotRows)],['Previous Row Count', 'New Row Count','Rows affected'])
+        return (newDF, summary)
+    return newDF
