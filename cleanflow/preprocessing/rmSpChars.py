@@ -11,9 +11,10 @@ def rmSpChars(df, columns="*", regex=None):
     
     Parameters
     ----------
-    columns : list of names columns to be processed.
-    columns : argument can be a string or a list of strings.
-    regex   : string that contains the regular expression
+    df      : Dataframe to be processed
+    columns : (optional - default *)list of names columns to be processed.
+                argument can be a string or a list of strings.
+    regex   : (optional - default None)string that contains the regular expression
     
     return df
     """
