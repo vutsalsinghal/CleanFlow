@@ -1,9 +1,11 @@
 import re
 import string
-from cleanflow.assertions import *
+from cleanflow.assertions import assert_type_str_or_list, assert_cols_in_df
+from cleanflow.utils import totChanges
+from cleanflow.exploratory import find_unique
+from pyspark.sql.functions import trim, col
 from pyspark.sql.functions import col, udf
 from pyspark.sql.types import StringType
-
 from pyspark.sql import SparkSession
 from pyspark.sql import SQLContext
 from pyspark import SparkContext
@@ -11,8 +13,7 @@ from pyspark import SparkContext
 sc = SparkContext.getOrCreate()
 sqlContext = SQLContext(sc)
 
-
-def rmSpChars(df, columns="*", regex=None):
+def rmSpChars(df, columns="*", regex=None, summary=False):
     """
     This function remove special characters in string columns, such as: .$%()!&"#/
     You can also remove unwanted sub-string by specifying the regex in "regex" parameter!
@@ -41,6 +42,9 @@ def rmSpChars(df, columns="*", regex=None):
 
     assert (col_not_valids == set()), 'Error: The following columns do not have same datatype argument provided: %s' % col_not_valids
 
+    # Columns that are present in user_input and valid_columns
+    col_pool = [c for c in columns if c in valid_cols]
+
     def rm_Sp_Chars(inputStr, regex):
         if regex is None:
             for punct in (set(inputStr) & set(string.punctuation)):
@@ -51,5 +55,15 @@ def rmSpChars(df, columns="*", regex=None):
         return inputStr
 
     function = udf(lambda cell: rm_Sp_Chars(cell, regex) if cell is not None else cell, StringType())
-    exprs = [function(c).alias(c) if (c in columns) and (c in valid_cols)  else c for c in df.columns]
-    return df.select(*exprs)
+    
+    oldUnique = [find_unique(df, column=c) for c in col_pool]
+    
+    exprs = [function(c).alias(c) if c in col_pool else c for c in df.columns]
+    newDF = df.select(*exprs)
+
+    if summary:
+        newUnique = [find_unique(newDF, column=c) for c in col_pool]
+        count = int(totChanges(oldUnique, newUnique))
+        summary = sqlContext.createDataFrame([(count,)],['Total Cells Modified',])
+        return (newDF, summary)
+    return newDF

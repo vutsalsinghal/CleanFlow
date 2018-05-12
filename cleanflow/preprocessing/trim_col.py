@@ -1,7 +1,7 @@
 from cleanflow.assertions import assert_type_str_or_list, assert_cols_in_df
 from cleanflow.utils import totChanges
-from pyspark.sql.functions import trim, col
 from cleanflow.exploratory import find_unique
+from pyspark.sql.functions import trim, col
 from pyspark.sql import SparkSession
 from pyspark.sql import SQLContext
 from pyspark import SparkContext
