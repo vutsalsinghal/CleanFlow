@@ -51,3 +51,19 @@ def write_json(df, path):
     """
     df.toPandas.to_json(path)
 
+def totChanges(old, new):
+    '''
+    Function to calculate total modification done on performing an action
+    '''
+    count = 0
+    
+    for column in range(len(new)):
+        indiv_old = old[column].toPandas().set_index('UniqueValues').T.to_dict('records')[0]
+        indiv_new = new[column].toPandas().set_index('UniqueValues').T.to_dict('records')[0]
+        
+        for n in indiv_new:
+            if n in indiv_old:
+                count += abs(indiv_new[n]-indiv_old[n])
+            else:
+                count += indiv_new[n]
+        return count
