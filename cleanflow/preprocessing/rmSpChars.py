@@ -4,6 +4,14 @@ from cleanflow.assertions import *
 from pyspark.sql.functions import col, udf
 from pyspark.sql.types import StringType
 
+from pyspark.sql import SparkSession
+from pyspark.sql import SQLContext
+from pyspark import SparkContext
+
+sc = SparkContext.getOrCreate()
+sqlContext = SQLContext(sc)
+
+
 def rmSpChars(df, columns="*", regex=None):
     """
     This function remove special characters in string columns, such as: .$%()!&"#/
@@ -14,7 +22,7 @@ def rmSpChars(df, columns="*", regex=None):
     df      : Dataframe to be processed
     columns : (optional - default *)list of names columns to be processed.
                 argument can be a string or a list of strings.
-    regex   : (optional - default None)string that contains the regular expression
+    regex   : (optional - default None) string that contains the regular expression
     
     return df
     """
