@@ -1,4 +1,4 @@
-def remove_duplicates(df, cols=None):
+def remove_duplicates(df, columns=None):
 	"""
 	Remove duplicate values from specified columns.
 
@@ -11,4 +11,5 @@ def remove_duplicates(df, cols=None):
 	"""
 
 	assert isinstance(cols, list), "Error, cols argument provided must be a list."
-	return df.drop_duplicates(cols)
+	newDF = df.drop_duplicates(columns)
+	return newDF
